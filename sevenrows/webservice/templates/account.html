@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Профиль!</title>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+        
+        <style type="text/css">
+        </style>
+
+    </head>
+    <body>
+
+    <h1>Моя страница</h1>
+    <div>Сессия: {{ session }}.</div>
+    <hr />
+    <div class="AccountBox">
+        <form action="/ajax/account/change_all/" method="POST">
+                {% csrf_token %}
+                {{ account_form.as_p }}
+                <input type="submit" id="submit_button" value="Изменить" />
+        </form>
+
+        <hr />
+        <form action="/ajax/account/change_plus/" method="POST">
+                {% csrf_token %}
+                {{ account_plus_form.as_p }}
+                <input type="submit" id="submit_button" value="Изменить" />
+        </form>
+    </div>
+    <hr />
+    <div>
+        <form name="logout" action="/ajax/logout/" method="GET">
+            <input type="hidden" name="who" value="{{ session }}" />
+            <input type="hidden" name="action" value="logout" />
+            <input type="submit" id="logout_button" value="Выйти" />
+        </form>
+    </div>
+    </body>
+</html>

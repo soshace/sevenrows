@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Name>sevenrows</Name>
+    <RootNamespace>sevenrows</RootNamespace>
+    <InterpreterId>{e9a8ec9e-5ffc-4281-a98c-8115bf22f650}</InterpreterId>
+    <InterpreterVersion>2.7</InterpreterVersion>
+    <NameOfLastUsedPublishProfile>sevenrows</NameOfLastUsedPublishProfile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>3536f8a0-af17-4e2c-99c8-3490b26dac78</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectTypeGuids>{5F0BE9CA-D677-4A4D-8806-6076C0FAAD37};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <StartupFile>manage.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <LaunchProvider>Django launcher</LaunchProvider>
+    <OutputPath>.</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="manage.py" />
+    <Compile Include="sevenrows\__init__.py" />
+    <Compile Include="sevenrows\settings.py" />
+    <Compile Include="sevenrows\urls.py" />
+    <Compile Include="sevenrows\wsgi.py" />
+    <Compile Include="webservice\forms.py" />
+    <Compile Include="webservice\models.py" />
+    <Compile Include="webservice\tests.py" />
+    <Compile Include="webservice\views.py" />
+    <Compile Include="webservice\views\account.py" />
+    <Compile Include="webservice\views\ajax_auth.py" />
+    <Compile Include="webservice\views\cards.py" />
+    <Compile Include="webservice\views\images.py" />
+    <Compile Include="webservice\views\index.py" />
+    <Compile Include="webservice\views\messaging.py" />
+    <Compile Include="webservice\views\my.py" />
+    <Compile Include="webservice\views\__init__.py" />
+    <Compile Include="webservice\__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebPiReference Include="https://www.microsoft.com/web/webpi/3.0/toolsproductlist.xml%3fDjango">
+      <Feed>https://www.microsoft.com/web/webpi/3.0/toolsproductlist.xml</Feed>
+      <ProductId>Django</ProductId>
+      <FriendlyName>Django 1.4</FriendlyName>
+    </WebPiReference>
+    <WebPiReference Include="https://www.microsoft.com/web/webpi/3.0/toolsproductlist.xml%3fPython27">
+      <Feed>https://www.microsoft.com/web/webpi/3.0/toolsproductlist.xml</Feed>
+      <ProductId>Python27</ProductId>
+      <FriendlyName>Python 2.7</FriendlyName>
+    </WebPiReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="sevenrows\" />
+    <Folder Include="webservice\" />
+    <Folder Include="webservice\static\" />
+    <Folder Include="webservice\static\css\" />
+    <Folder Include="webservice\static\fonts\" />
+    <Folder Include="webservice\static\js\" />
+    <Folder Include="webservice\static\images\" />
+    <Folder Include="webservice\static\js\webservice_messages\" />
+    <Folder Include="webservice\static\js\webservice_cards\" />
+    <Folder Include="webservice\static\js\webservice_my\" />
+    <Folder Include="webservice\static\js\qr_recognition\" />
+    <Folder Include="webservice\views\" />
+    <Folder Include="webservice\templates\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="sevenrows_env\">
+      <Id>{e9a8ec9e-5ffc-4281-a98c-8115bf22f650}</Id>
+      <BaseInterpreter>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</BaseInterpreter>
+      <Version>2.7</Version>
+      <Description>sevenrows_env (Python 2.7)</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <LibraryPath>Lib\</LibraryPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+    </Interpreter>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="webservice\static\css\badaboom (2).css" />
+    <Content Include="webservice\static\css\badaboom.core.css" />
+    <Content Include="webservice\static\css\badaboom.css" />
+    <Content Include="webservice\static\css\bootstrap.min.css" />
+    <Content Include="webservice\static\css\carousel.css" />
+    <Content Include="webservice\static\css\JenniferBerke.png" />
+    <Content Include="webservice\static\css\KevinRose.png" />
+    <Content Include="webservice\static\css\MattMullenweg.png" />
+    <Content Include="webservice\static\css\NicoleLapin.png" />
+    <Content Include="webservice\static\css\style.min.css" />
+    <Content Include="webservice\static\css\VeronicaBelmont.png" />
+    <Content Include="webservice\static\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="webservice\static\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="webservice\static\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="webservice\static\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="webservice\static\images\GLAMcamp_Amsterdam_QR_code.png" />
+    <Content Include="webservice\static\images\isaak.jpg" />
+    <Content Include="webservice\static\images\JenniferBerke.png" />
+    <Content Include="webservice\static\images\KevinRose.png" />
+    <Content Include="webservice\static\images\logo.jpg" />
+    <Content Include="webservice\static\images\logo.png" />
+    <Content Include="webservice\static\images\MattMullenweg.png" />
+    <Content Include="webservice\static\images\NicoleLapin.png" />
+    <Content Include="webservice\static\images\petergof.jpg" />
+    <Content Include="webservice\static\images\petergof_main_page.jpg" />
+    <Content Include="webservice\static\images\qr_code.gif" />
+    <Content Include="webservice\static\images\qr_code.png" />
+    <Content Include="webservice\static\images\qr_code1.gif" />
+    <Content Include="webservice\static\images\qr_code_1.png" />
+    <Content Include="webservice\static\images\SGRFkqB-Cug.jpg" />
+    <Content Include="webservice\static\images\VeronicaBelmont.png" />
+    <Content Include="webservice\static\js\bootstrap.min.js" />
+    <Content Include="webservice\static\js\jquery-1.10.2.min.js" />
+    <Content Include="webservice\static\js\jquery.animate-shadow-min.js" />
+    <Content Include="webservice\static\js\jquery.bpopup.min.js" />
+    <Content Include="webservice\static\js\jquery.easing.1.3.js" />
+    <Content Include="webservice\static\js\jquery.min.js" />
+    <Content Include="webservice\static\js\jquery1.8.3-jqueryui1.9.2.js" />
+    <Content Include="webservice\static\js\llqrcode.js" />
+    <Content Include="webservice\static\js\login.js" />
+    <Content Include="webservice\static\js\mobile.js" />
+    <Content Include="webservice\static\js\modernizr-custom.js" />
+    <Content Include="webservice\static\js\my.js" />
+    <Content Include="webservice\static\js\qr_recognition\alignpat.js" />
+    <Content Include="webservice\static\js\qr_recognition\bitmat.js" />
+    <Content Include="webservice\static\js\qr_recognition\bmparser.js" />
+    <Content Include="webservice\static\js\qr_recognition\datablock.js" />
+    <Content Include="webservice\static\js\qr_recognition\databr.js" />
+    <Content Include="webservice\static\js\qr_recognition\datamask.js" />
+    <Content Include="webservice\static\js\qr_recognition\decoder.js" />
+    <Content Include="webservice\static\js\qr_recognition\detector.js" />
+    <Content Include="webservice\static\js\qr_recognition\errorlevel.js" />
+    <Content Include="webservice\static\js\qr_recognition\findpat.js" />
+    <Content Include="webservice\static\js\qr_recognition\formatinf.js" />
+    <Content Include="webservice\static\js\qr_recognition\gf256.js" />
+    <Content Include="webservice\static\js\qr_recognition\gf256poly.js" />
+    <Content Include="webservice\static\js\qr_recognition\grid.js" />
+    <Content Include="webservice\static\js\qr_recognition\llqrcode.js" />
+    <Content Include="webservice\static\js\qr_recognition\qrcode.js" />
+    <Content Include="webservice\static\js\qr_recognition\rsdecoder.js" />
+    <Content Include="webservice\static\js\qr_recognition\test.html" />
+    <Content Include="webservice\static\js\qr_recognition\version.js" />
+    <Content Include="webservice\static\js\qr_recognition\webqr.js" />
+    <Content Include="webservice\static\js\scriptcam.js" />
+    <Content Include="webservice\static\js\scripting.min.js" />
+    <Content Include="webservice\static\js\vk_facebook_twitter.js" />
+    <Content Include="webservice\static\js\webqr.js" />
+    <Content Include="webservice\static\js\webservice_cards\cards.js" />
+    <Content Include="webservice\static\js\webservice_messages\messages.js" />
+    <Content Include="webservice\static\js\webservice_my\changeUserData.js" />
+    <Content Include="webservice\templates\account.html" />
+    <Content Include="webservice\templates\auth.html" />
+    <Content Include="webservice\templates\cards.html" />
+    <Content Include="webservice\templates\cards__details.html" />
+    <Content Include="webservice\templates\images.html" />
+    <Content Include="webservice\templates\index.html" />
+    <Content Include="webservice\templates\messages.html" />
+    <Content Include="webservice\templates\messages_toFriend.html" />
+    <Content Include="webservice\templates\my.html" />
+    <Content Include="webservice\templates\page.html" />
+    <Content Include="webservice\templates\reg.html" />
+    <Content Include="webservice\templates\regok.html" />
+    <Content Include="webservice\templates\start.html" />
+    <Content Include="webservice\templates\template1.html" />
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\Python Tools\Microsoft.PythonTools.Django.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

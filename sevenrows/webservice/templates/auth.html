@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>Аутентификация пользователя</title>
+	</head>
+	<body>
+    <h1>User authentication</h1>
+
+	{% if message %}
+        <p style="color: green;">
+            Message:
+            {{ message }}.
+        </p>
+    {% endif %}
+    
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    <form action="." method="post">{% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+	</body>
+</html>

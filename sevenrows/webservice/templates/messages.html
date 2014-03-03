@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <title>Мои сообщения (messages)</title>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/carousel.css">
+        <script type="text/javascript" src="/static/js/jquery-1.10.2.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/static/js/my.js"></script>
+        <script type="text/javascript" src="/static/js/webservice_messages/messages.js"></script>
+        <style type="text/css">
+            @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+            html {
+                height: 100%;
+            }
+            body {
+                background: url(/static/images/petergof.jpg);
+                height: 100%;
+            }
+            #draggable {
+                padding: 0.5em;
+            }
+            p {
+                color: #fff;
+            }
+            p.userDataChange:hover {
+                text-decoration: underline;
+            }
+            a.userData {
+                color: white;
+            }
+        </style>
+
+    </head>
+    <body>
+
+        <div style="background-color:#252525;position:absolute;top:0px;bottom:0px;left:0px;display:inline-block;box-shadow:0 0 15px black;" width="100px">
+            <div style="background-color:#252525;position:absolute;top:0px;left:0px;display:inline-block;box-shadow:0 0 15px black;" width="100px">
+                <ul class="nav nav-pills nav-stacked">
+                    <li style="text-align:center;"><a href="/my/"><span class="glyphicon glyphicon-user" style="font-size:30px;"></span></a></li>
+                    <li style="text-align:center;"><a href="/messages/"><span class="glyphicon glyphicon-envelope" style="font-size:30px;"></span></a></li>
+                    <li style="text-align:center;"><a href="/pictures/"><span class="glyphicon glyphicon-picture" style="font-size:30px;"></span></a></li>
+                    <li style="text-align:center;"><a href="/cards/"><span class="glyphicon glyphicon-qrcode" style="font-size:30px;"></span></a></li>
+                </ul>
+            </div>
+            <div style="background-color:#252525;position:static;left:0px;display:inline-block;box-shadow:0 0 15px black;" width="100px">
+            <p>пиздец!</p>
+            <p>я</p>
+            <p>заеба</p>
+            <p>лся</p>
+            </div>
+            <div style="background-color:#252525;position:absolute;bottom:0px;left:0px;display:inline-block;box-shadow:0 0 15px black;" width="100px">
+                <ul class="nav nav-pills nav-stacked" style="vertical-align:bottom;">
+                    <li style="text-align:center;"><a href="/cards/"><span class="glyphicon glyphicon-cog" style="font-size:30px;"></span></a></li>
+                    <li style="text-align:center;"><a href="/settings/"><span class="glyphicon glyphicon-off" style="font-size:30px;"></span></a></li>
+                    <li style="text-align:center;"><a href="/"><span class="glyphicon glyphicon-copyright-mark" style="font-size:30px;"></span></a></li>
+                </ul>
+            </div>
+        </div>
+
+    <div class="container" style="border: 1px; background-color: black; opacity: 0.0; box-shadow:0 0 15px black;" id="draggable">
+        
+        <h1>Мои сообщения</h1>
+            <div>Сессия (я): {{ session }}.</div>
+            <hr />
+        <div>
+            <div style="width:30%; display: inline-block">
+                <div>
+                    <!-- attr.title is used for jquery -->
+                    {% for friend in friends %}
+                        <a id="link_to_messages" title="{{ friend }}">{{ friend }}</a> <br />
+                    {% endfor %}
+                </div>
+            </div>
+            <div style="width:70%; float: right; color:#fff;">
+                <div id="chat_div">
+                </div>
+                <div style="clear:both; display:none;" id="send_message_form_div">
+                    <form method="POST">
+                    {% csrf_token %}
+                    {{ send_message_form.as_p }}
+                <input type="button" id="send_message_button" value="Отослать" />
+        </form>
+    </div>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>

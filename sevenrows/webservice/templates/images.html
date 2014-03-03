@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>Мои фотографии (images)</title>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+        
+        <style type="text/css">
+        </style>
+
+    </head>
+    <body>
+
+    <h1>Моя страница</h1>
+    <div>Сессия: {{ session }}.</div>
+    <hr />
+    <div>
+        {% for element in pictures %}
+            <img src="/media/{{ element }}" width=200 height=200 />
+        {%endfor %}
+        {% for element in descriptions %}
+            <p width=200 height=200>{{ element }}</p>
+        {%endfor %}
+    </div>
+    <hr />
+    <div>
+        <form enctype="multipart/form-data"  action="/images/" method="POST">
+                {% csrf_token %}
+                {{ upload_image_form.as_p }}
+                <input type="submit" id="submit_button" value="Загрузить" />
+        </form>
+    </div>
+    </body>
+</html>

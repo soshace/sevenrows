@@ -1,0 +1,169 @@
+<html>
+    <head>
+        <title>Приветствую!</title>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#id_reg_email").change(function(){
+                    email = $("#id_reg_email").val();
+                    if(!email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)){
+                        $("#id_reg_email").next().hide().text("Неверный email").css("color", "red").fadeIn(400);
+                        $("#id_reg_email").removeClass().addClass("inputRed");
+                        emailStat = 0;
+                        buttonOnAndOff();
+                    } else {
+                        $.ajax({
+                            url: "ajax/check/email/",
+                            type: "GET",
+                            data: "email=" + email,
+                            cache: false,
+                            success: function(response){
+                                if(response == "no"){
+                                    $("#id_reg_email").next().hide().text("Email занят").css("color", "red").fadeIn(400);
+                                    $("#id_reg_email").removeClass().addClass("inputRed");
+                                } else {
+                                    $("#id_reg_email").removeClass().addClass("inputGreen");
+                                    //$("#id_email").next().hide().text("");
+                                    emailStat = 1;
+                                }
+                            }
+                        });
+                        buttonOnAndOff();
+                    }
+                });
+
+                $("#id_login_submit").click(function(){
+                    email = $("#id_login_email").val();
+                    if(!email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)){
+                        $("#id_login_email").next().hide().text("Неверный email").css("color", "red").fadeIn(400);
+                        $("#id_login_email").removeClass().addClass("inputRed");
+                        emailStat = 0;
+                        //buttonOnAndOff();
+                    } else {
+                        $.post("ajax/login/", {
+                            email: $("#id_login_email").val(),
+                            password: $("#id_login_password").val(),
+                            csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val()
+                        }, function(){
+                        });
+                        //buttonOnAndOff();
+                    }
+                });
+
+                $("#id_reg_submit").click(function(){
+                    $.ajax({
+                            url: "ajax/reg/",
+                            type: "POST",
+                            data: {
+                                email: $("#id_reg_email").val(),
+                                csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val()
+                            },
+                            cache: false,
+                            success: function(response){
+                                alert(response);
+                            }
+                        });
+                    /*$.post("ajax/reg/", {
+                        email: $("#id_reg_email").val(),
+                        csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val()
+                    }, function(data){
+                        alert(data);
+                    });
+                        //buttonOnAndOff();
+                        */
+                });
+
+                $("#id_reg_email").keyup(function(){
+                    $("#id_reg_email").removeClass();
+                    $("#id_reg_email").next().text();
+                });
+
+                
+                $("#id_login_email").keyup(function(){
+                    $("#id_login_email").removeClass();
+                    $("#id_login_email").next().text();
+                });
+            });
+
+            function buttonOnAndOff(){
+                if(emailStat == 1){
+                    $("#id_reg_submit").removeAttr("disabled");
+                    $("#id_login_submit").removeAttr("disabled");
+                } else {
+                    $("#id_reg_submit").attr("disabled", "disabled");
+                    $("#id_login_submit").attr("disabled", "disabled");
+                }
+            }
+
+
+
+        </script>
+        <style type="text/css">
+        body{
+            background: whitesmoke;
+        }
+        .FormWrapper{
+            background: aliceblue;
+            width: 605px;
+            padding: 5px;
+            margin: 0 auto;
+        }
+        .RegistrationClass, .LoginClass{
+            border: 1px solid dodgerblue;
+            background: aliceblue;
+            width: 300px;
+        }
+        .RegistrationClass{
+            float: left;
+        }
+        .LoginClass{
+            float: right;
+        }
+        .inputRed{
+            border: 1px solid #ff4040;
+            background: #ffcece;
+        }
+        .inputGreen{
+            border: 1px solid #83c954;
+            background: #e8ffce;
+        }
+        </style>
+    </head>
+    <body>
+    <h1>Войти на сайт</h1>
+    <div>Текущая сессия: {{ session }}</div>
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    {% if message %}
+        <p style="color: green;">
+            Message:
+            {{ message }}.
+        </p>
+    {% endif %}
+
+    <div class="FormWrapper">
+        <div class="RegistrationClass">
+            <form action="#" method="post">
+                {% csrf_token %}
+                <label>Email: </label>{{ reg_form.email }}<br>
+                <input type="button" name="submit" id="id_reg_submit" value="Регистрируюсь!"/>
+            </form>
+        </div>
+
+        <div class="LoginClass">
+            <form action="#" method="post">
+                {% csrf_token %}
+                <label>Email: </label>{{ login_form.email }}<br>
+                <label>Password: </label>{{ login_form.password }}<br>
+                <input type="button" name="submit" id="id_login_submit" value="Вхожу!" />
+            </form>
+        </div>
+    </div>
+
+
+    </body>
+</html>

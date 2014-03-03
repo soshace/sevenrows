@@ -1,0 +1,126 @@
+<DOCTYPE html>
+
+    <head>
+        
+
+        <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/carousel.css">
+        <script type="text/javascript" src="/static/js/jquery-1.10.2.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/static/js/my.js"></script>
+
+        {% load staticfiles %}
+        <script type="text/javascript" src="{% static 'js/webservice_my/changeUserData.js' %}"></script>
+        <title>Страница пользователя {% if guest_is_here = True %} {{ username }} {% else %} {{ session }} {% endif %}. (my)</title>
+        
+        <style type="text/css">
+            @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+            html {
+                height: 100%;
+            }
+            body {
+                background: url(/static/images/petergof.jpg);
+                height: 100%;
+            }
+            #draggable {
+                padding: 0.5em;
+            }
+            p {
+                color: #fff;
+            }
+            p.userDataChange:hover {
+                text-decoration: underline;
+            }
+            a.userData {
+                color: white;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div style="background-color:#252525;position:absolute;top:0px;bottom:0px;left:0px;display:inline-block;box-shadow:0 0 15px black;" width="100px">
+            <div style="background-color:#252525;position:absolute;top:0px;left:0px;display:inline-block;box-shadow:0 0 15px black;" width="100px">
+                <ul class="nav nav-pills nav-stacked">
+                    <li style="text-align:center;"><a href="/my/"><span class="glyphicon glyphicon-user" style="font-size:30px;"></span></a></li>
+                    <li style="text-align:center;"><a href="/messages/"><span class="glyphicon glyphicon-envelope" style="font-size:30px;"></span></a></li>
+                    <li style="text-align:center;"><a href="/pictures/"><span class="glyphicon glyphicon-picture" style="font-size:30px;"></span></a></li>
+                    <li style="text-align:center;"><a href="/cards/"><span class="glyphicon glyphicon-qrcode" style="font-size:30px;"></span></a></li>
+                </ul>
+            </div>
+            <div style="background-color:#252525;position:static;left:0px;display:inline-block;box-shadow:0 0 15px black;" width="100px">
+            <p>пиздец!</p>
+            <p>я</p>
+            <p>заеба</p>
+            <p>лся</p>
+            </div>
+            <div style="background-color:#252525;position:absolute;bottom:0px;left:0px;display:inline-block;box-shadow:0 0 15px black;" width="100px">
+                <ul class="nav nav-pills nav-stacked" style="vertical-align:bottom;">
+                    <li style="text-align:center;"><a href="/cards/"><span class="glyphicon glyphicon-cog" style="font-size:30px;"></span></a></li>
+                    <li style="text-align:center;"><a href="/settings/"><span class="glyphicon glyphicon-off" style="font-size:30px;"></span></a></li>
+                    <li style="text-align:center;"><a href="/"><span class="glyphicon glyphicon-copyright-mark" style="font-size:30px;"></span></a></li>
+                </ul>
+            </div>
+        </div>
+
+            <div class="container" style="border: 1px; background-color: black; opacity: 0.0; box-shadow:0 0 15px black;" id="draggable">
+                <h1>Уголок {% if guest_is_here = True %} {{ username }} {% else %} {{ session }} {% endif %}.</h1>
+                <div>Ваша Сессия: {{ session }}.</div>
+                <hr />
+
+                {% if guest_is_here == True %}
+                    {% if user.is_authenticated %}
+                        <p><a href="/ajax/add_friend_when_authenticated/{{session}}/{{hash_code}}">написать человеку от лица {{ session }}</a></p>
+                    {% else %}
+                        <p><a href="/">Го регаться или логиниться</a></p>
+                    {% endif %}
+                {% else %}
+                <div><a href="/account/">Редактировать данные профиля</a></div>
+                <div><a href="/messages/">Сообщения</a></div>
+                <div><a href="/images/">Фотографии</a></div>
+                <div><a href="/cards/">Карточки</a></div>
+                <hr />
+                <div>
+                    <form name="logout" action="/ajax/logout/" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="who" value="{{ session }}" />
+                        <input type="hidden" name="action" value="logout" />
+                        <input type="submit" id="logout_button" value="Выйти" />
+                    </form>
+                </div>
+                <hr />
+                {% endif %}
+
+                <div class="userDataDiv">
+                    <p id="userDataName">Имя: <b>{{ first_name }}</b></p>
+                    <p id="userDataSurname">Фамилия: <b>{{ last_name }}</b></p>
+                    <p id="userDataBirthday">День рождения: <b>{{ date_of_birth }}</b></p>
+                    <p id="userDataGrowth">Рост: <b>{{ growth }} см</b>.</p>
+                    <p id="userDataEyeColor">Цвет глаз <b>{{ eyes_color }}</b>.</p>
+                    <p id="userDataAbout">О себе: <b>{{ about }}</b>.</p>
+                    <p id="userDataPersonalField">Персональное поле: <b>{{ personal_field }}</b></p>
+                    <p id="userDataChange"><b>Change</b></p>
+                </div>
+                <div class="userDataForms" style="display: none">
+                    <form action="/ajax/account/change_all/" method="POST">
+                        {% csrf_token %}
+                        {{ account_form.as_p }}
+                        <input type="button" id="id_change_all_button" value="Изменить" />
+                    </form>
+                    <form action="/ajax/account/change_plus/" method="POST" style="display: none">
+                        {% csrf_token %}
+                        {{ account_plus_form.as_p }}
+                        <input type="submit" id="submit_button" value="Изменить" />
+                    </form>
+                </div>
+                <hr />
+                <div>
+                    <p>Место учебы (в разарботке): <b>{{ education }}</b></p>
+                    <p>Место работы (в разарботке): <b>{{ career }}</b></p>
+                    <p>Посещаю места (в разарботке): <b>{{ places }}</b></p>
+                </div>
+            </div>
+
+    </body>
+</html>

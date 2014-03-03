@@ -1,0 +1,31 @@
+<!--<html>
+    <head>
+        <title>Мои сообщения (messages)</title>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+        
+        <style type="text/css">
+        </style>
+
+    </head>
+    <body>
+
+     <h1>Моя страница</h1>
+    <div>Сессия: {{ user }}.</div>
+    <hr />     -->
+    <div>
+
+        {% for key, value in messages.items %}
+            {% if key != 'accepter' %}
+                    <table border='1' style="float:left; color:#fff">
+                {% for element in value %}
+                        <tr><td>{{ element }}</td></tr>
+                {% endfor %}
+                </table>
+            {% endif %}
+        {% endfor %}
+        
+    </div>
+    
+<!--
+    </body>
+</html> -->
